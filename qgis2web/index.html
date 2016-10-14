@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="css/qgis2web.css">
+        <link rel="stylesheet" href="css/MarkerCluster.css" />
+        <link rel="stylesheet" href="css/MarkerCluster.Default.css" />
+        <link rel="stylesheet" href="css/leaflet.draw.css" />
+        <link rel="stylesheet" href="css/leaflet.measurecontrol.css" />
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet-heat.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/OSMBuildings-Leaflet.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/leaflet.draw.js"></script>
+        <script src="js/leaflet.measurecontrol.js"></script>
+        <script src="js/leaflet.markercluster.js"></script>
+        <style>
+        #map {
+            width: 1052px;
+            height: 627px;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="data/json_ACLED2016Jan0.js"></script>
+        <script>
+        L.ImageOverlay.include({
+            getBounds: function () {
+                return this._bounds;
+            }
+        });
+        var map = L.map('map', {
+            measureControl:true,
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[-35.919272,-46.8611482921],[39.059632,79.2670882921]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.addAttribution('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a>');
+        var feature_group = new L.featureGroup([]);
+        var bounds_group = new L.featureGroup([]);
+        var raster_group = new L.LayerGroup([]);
+        var basemap0 = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors,<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+            maxZoom: 28
+        });
+        basemap0.addTo(map);
+        function setBounds() {
+        }
+        function geoJson2heat(geojson, weight) {
+          return geojson.features.map(function(feature) {
+            return [
+              feature.geometry.coordinates[1],
+              feature.geometry.coordinates[0],
+              feature.properties[weight]
+            ];
+          });
+        }
+        function pop_ACLED2016Jan0(feature, layer) {
+            var popupContent = '<table><tr><td colspan="2">' + (feature.properties['GWNO'] !== null ? Autolinker.link(String(feature.properties['GWNO'])) : '') + '</td></tr><tr><td colspan="2">' + (feature.properties['EVENT_ID_CNTY'] !== null ? Autolinker.link(String(feature.properties['EVENT_ID_CNTY'])) : '') + '</td></tr><tr><td colspan="2">' + (feature.properties['EVENT_ID_NO_CNTY'] !== null ? Autolinker.link(String(feature.properties['EVENT_ID_NO_CNTY'])) : '') + '</td></tr><tr><td colspan="2">' + (feature.properties['EVENT_DATE'] !== null ? Autolinker.link(String(feature.properties['EVENT_DATE'])) : '') + '</td></tr><tr><td colspan="2">' + (feature.properties['YEAR'] !== null ? Autolinker.link(String(feature.properties['YEAR'])) : '') + '</td></tr><tr><td colspan="2">' + (feature.properties['TIME_PRECISION'] !== null ? Autolinker.link(String(feature.properties['TIME_PRECISION'])) : '') + '</td></tr><tr><td colspan="2">' + (feature.properties['EVENT_TYPE'] !== null ? Autolinker.link(String(feature.properties['EVENT_TYPE'])) : '') + '</td></tr><tr><td colspan="2">' + (feature.properties['ACTOR1'] !== null ? Autolinker.link(String(feature.properties['ACTOR1'])) : '') + '</td></tr><tr><td colspan="2">' + (feature.properties['ALLY_ACTOR_1'] !== null ? Autolinker.link(String(feature.properties['ALLY_ACTOR_1'])) : '') + '</td></tr><tr><th scope="row">INTER1</th><td>' + (feature.properties['INTER1'] !== null ? Autolinker.link(String(feature.properties['INTER1'])) : '') + '</td></tr><tr><td colspan="2">' + (feature.properties['ACTOR2'] !== null ? Autolinker.link(String(feature.properties['ACTOR2'])) : '') + '</td></tr><tr><td colspan="2">' + (feature.properties['ALLY_ACTOR_2'] !== null ? Autolinker.link(String(feature.properties['ALLY_ACTOR_2'])) : '') + '</td></tr><tr><td colspan="2">' + (feature.properties['INTER2'] !== null ? Autolinker.link(String(feature.properties['INTER2'])) : '') + '</td></tr><tr><td colspan="2">' + (feature.properties['INTERACTION'] !== null ? Autolinker.link(String(feature.properties['INTERACTION'])) : '') + '</td></tr><tr><td colspan="2">' + (feature.properties['COUNTRY'] !== null ? Autolinker.link(String(feature.properties['COUNTRY'])) : '') + '</td></tr><tr><td colspan="2">' + (feature.properties['ADMIN1'] !== null ? Autolinker.link(String(feature.properties['ADMIN1'])) : '') + '</td></tr><tr><td colspan="2">' + (feature.properties['ADMIN2'] !== null ? Autolinker.link(String(feature.properties['ADMIN2'])) : '') + '</td></tr><tr><td colspan="2">' + (feature.properties['ADMIN3'] !== null ? Autolinker.link(String(feature.properties['ADMIN3'])) : '') + '</td></tr><tr><td colspan="2">' + (feature.properties['LOCATION'] !== null ? Autolinker.link(String(feature.properties['LOCATION'])) : '') + '</td></tr><tr><td colspan="2">' + (feature.properties['LATITUDE'] !== null ? Autolinker.link(String(feature.properties['LATITUDE'])) : '') + '</td></tr><tr><td colspan="2">' + (feature.properties['LONGITUDE'] !== null ? Autolinker.link(String(feature.properties['LONGITUDE'])) : '') + '</td></tr><tr><td colspan="2">' + (feature.properties['GEO_PRECISION'] !== null ? Autolinker.link(String(feature.properties['GEO_PRECISION'])) : '') + '</td></tr><tr><td colspan="2">' + (feature.properties['SOURCE'] !== null ? Autolinker.link(String(feature.properties['SOURCE'])) : '') + '</td></tr><tr><td colspan="2">' + (feature.properties['NOTES'] !== null ? Autolinker.link(String(feature.properties['NOTES'])) : '') + '</td></tr><tr><td colspan="2">' + (feature.properties['FATALITIES'] !== null ? Autolinker.link(String(feature.properties['FATALITIES'])) : '') + '</td></tr></table>';
+            layer.bindPopup(popupContent);
+        }
+
+        function doStyleACLED2016Jan0(feature) {
+			switch (feature.properties['EVENT_TYPE']) {
+                case 'Battle-Government regains territory':
+                    return {
+                    radius: 4.0,
+                    fillColor: '#33d80e',
+                    color: '#000000',
+                    weight: 0.0,
+                    opacity: 1.0,
+                    dashArray: '',
+                    fillOpacity: '1.0',
+                };
+                break;
+                case 'Battle-No change of territory':
+                    return {
+                    radius: 4.0,
+                    fillColor: '#ee4dab',
+                    color: '#000000',
+                    weight: 0.0,
+                    opacity: 1.0,
+                    dashArray: '',
+                    fillOpacity: '1.0',
+                };
+                break;
+                case 'Battle-Non-state actor overtakes territory':
+                    return {
+                    radius: 4.0,
+                    fillColor: '#d165e9',
+                    color: '#000000',
+                    weight: 0.0,
+                    opacity: 1.0,
+                    dashArray: '',
+                    fillOpacity: '1.0',
+                };
+                break;
+                case 'Headquarters or base established':
+                    return {
+                    radius: 4.0,
+                    fillColor: '#19d668',
+                    color: '#000000',
+                    weight: 0.0,
+                    opacity: 1.0,
+                    dashArray: '',
+                    fillOpacity: '1.0',
+                };
+                break;
+                case 'Non-violent transfer of territory':
+                    return {
+                    radius: 4.0,
+                    fillColor: '#bdea1a',
+                    color: '#000000',
+                    weight: 0.0,
+                    opacity: 1.0,
+                    dashArray: '',
+                    fillOpacity: '1.0',
+                };
+                break;
+                case 'Remote violence':
+                    return {
+                    radius: 4.0,
+                    fillColor: '#907bdc',
+                    color: '#000000',
+                    weight: 0.0,
+                    opacity: 1.0,
+                    dashArray: '',
+                    fillOpacity: '1.0',
+                };
+                break;
+                case 'Riots/Protests':
+                    return {
+                    radius: 4.0,
+                    fillColor: '#3b76d3',
+                    color: '#000000',
+                    weight: 0.0,
+                    opacity: 1.0,
+                    dashArray: '',
+                    fillOpacity: '1.0',
+                };
+                break;
+                case 'Strategic development':
+                    return {
+                    radius: 4.0,
+                    fillColor: '#d36260',
+                    color: '#000000',
+                    weight: 0.0,
+                    opacity: 1.0,
+                    dashArray: '',
+                    fillOpacity: '1.0',
+                };
+                break;
+                case 'Violence against civilians':
+                    return {
+                    radius: 4.0,
+                    fillColor: '#1fcdd0',
+                    color: '#000000',
+                    weight: 0.0,
+                    opacity: 1.0,
+                    dashArray: '',
+                    fillOpacity: '1.0',
+                };
+                break;
+            }
+        }
+        map.createPane('pane_ACLED2016Jan0');
+        map.getPane('pane_ACLED2016Jan0').style.zIndex = 601;
+        var json_ACLED2016Jan0JSON = new L.geoJson(json_ACLED2016Jan0, {
+            pane: 'pane_ACLED2016Jan0',
+            onEachFeature: pop_ACLED2016Jan0,
+            pointToLayer: function (feature, latlng) {
+                return L.circleMarker(latlng, doStyleACLED2016Jan0(feature))
+            }
+        });
+        bounds_group.addLayer(json_ACLED2016Jan0JSON);
+        feature_group.addLayer(json_ACLED2016Jan0JSON);
+        raster_group.addTo(map);
+        feature_group.addTo(map);
+        setBounds();
+        </script>
+    </body>
+</html>
