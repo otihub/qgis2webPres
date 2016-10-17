@@ -113,13 +113,99 @@ window.onload = function() {
 </div>
 <div><p><img src="/imgs/what.gif" alt=""></p>
 </div>
-<div><pre><code>concat(
-&#39;&lt;h3&gt;&#39;, &quot;location&quot;, &#39;&lt;/h3&gt;
-&lt;table&gt;&#39;, 
-&#39;&lt;tr&gt;&lt;td&gt;Type: &lt;b&gt;&#39;, &quot;event_type&quot; ,&#39;&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;
-&lt;td&gt;Actor: &lt;b&gt;&#39;,&quot;actor1&quot;,&#39;&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Fatalities: &lt;b&gt;&#39;,&quot;fatalities&quot;, &#39;&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Source: &lt;b&gt;&#39;,&quot;source&quot;,&#39;&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;/table&gt;&lt;p&gt;&#39;
-)
+<div><p><em>HOW?</em></p>
+<p alight="center">
+<img src="/imgs/how.jpg" alt="">
+</p>
+</div>
+<div><p><img src ="imgs/QGis_Logo.png" style="width: 15%">
++ QGIS2Web Plugin</p>
+</div>
+<div><h2 id="-demo-"><em>Demo</em></h2>
+<ol>
+<li>QGIS2Web Overview</li>
+<li>Load ACLED Data</li>
+<li>Formatting HTML Popup, The Hard Way</li>
+<li>Routinely updating Data</li>
+</ol>
+</div>
+<div><h3 id="qgis2web-plugin">QGIS2Web Plugin</h3>
+<h1 id="-overview-"><em>Overview</em></h1>
+</div>
+<div><p><img src="/imgs/layers.png" alt=""></p>
+</div>
+<div><h1 id="layer-options">Layer Options</h1>
+<h2 id="-popup-fields-"><em>Popup fields</em></h2>
+<h3 id="specify-how-each-field-will-be-labelled-in-popups">Specify how each field will be labelled in popups</h3>
+<h2 id="-visible-"><em>Visible</em></h2>
+<h3 id="select-whether-the-layer-will-be-visible-on-map-load-this-only-determines-visibility-the-layer-will-be-loaded-regardless-of-this-setting">Select whether the layer will be visible on map load. This only determines visibility - the layer will be loaded regardless of this setting</h3>
+<h2 id="-encode-to-json-"><em>Encode to JSON</em></h2>
+<h3 id="if-unchecked-wfs-layers-will-remain-remote-wfs-layers-in-the-webmap-if-checked-the-layer-will-be-written-to-a-local-geojson-file">If unchecked, WFS layers will remain remote WFS layers in the webmap. If checked, the layer will be written to a local GeoJSON file</h3>
+<h2 id="-cluster-"><em>Cluster</em></h2>
+<h3 id="cluster-point-features">Cluster point features</h3>
+</div>
+<div><p><img src="imgs/options.png" alt=""></p>
+</div>
+<div><h1 id="data-export">Data Export</h1>
+<h2 id="-export-folder-"><em>Export folder</em></h2>
+<h3 id="the-folder-where-the-webmap-will-be-saved">The folder where the webmap will be saved</h3>
+<h2 id="-mapping-library-location-"><em>Mapping library location</em></h2>
+<h3 id="select-whether-to-use-a-local-copy-of-ol3-leaflet-or-whether-to-call-the-library-from-its-cdn">Select whether to use a local copy of OL3/Leaflet, or whether to call the library from its CDN</h3>
+<h2 id="-minify-geojson-files-"><em>Minify GeoJSON files</em></h2>
+<h3 id="remove-unnecessary-whitespace-from-exported-geojson-to-reduce-file-size">Remove unnecessary whitespace from exported GeoJSON to reduce file size</h3>
+<h2 id="-precision-"><em>Precision</em></h2>
+<h3 id="simplify-geometry-to-reduce-file-size">Simplify geometry to reduce file size</h3>
+</div>
+<div><h1 id="scale-zoom">Scale/Zoom</h1>
+<h2 id="-extent-"><em>Extent</em></h2>
+<h3 id="either-match-the-current-qgis-view-or-show-all-contents-of-all-layers-only-local-geojson-and-rasters-not-wfs-wms-">Either match the current QGIS view or show all contents of all layers (only local GeoJSON and rasters, not WFS/WMS)</h3>
+<h2 id="-max-zoom-level-"><em>Max zoom level</em></h2>
+<h3 id="how-far-the-webmap-will-zoom-in">How far the webmap will zoom in</h3>
+<h2 id="-min-zoom-level-"><em>Min zoom level</em></h2>
+<h3 id="how-far-the-webmap-will-zoom-out">How far the webmap will zoom out</h3>
+<h2 id="-restrict-to-extent-"><em>Restrict to extent</em></h2>
+<h3 id="prevent-panning-or-zooming-beyond-the-selected-extent">Prevent panning or zooming beyond the selected extent</h3>
+</div>
+<div><h1 id="appearance">Appearance</h1>
+<h2 id="-add-address-search-"><em>Add address search</em></h2>
+<h3 id="add-field-to-allow-searching-for-locations-geocode-">Add field to allow searching for locations (geocode)</h3>
+<h2 id="-add-layers-list-"><em>Add layers list</em></h2>
+<h3 id="include-list-of-layers-with-legend-icons-where-possible-">Include list of layers (with legend icons, where possible)</h3>
+<h2 id="-add-measure-tool-"><em>Add measure tool</em></h2>
+<h3 id="include-interactive-measuring-widget">Include interactive measuring widget</h3>
+<h2 id="-geolocate-user-"><em>Geolocate user</em></h2>
+<h3 id="show-user-s-location-on-map">Show user&#39;s location on map</h3>
+</div>
+<div><h1 id="appearance-cont-">Appearance cont.</h1>
+<h2 id="-highlight-on-hover-"><em>Highlight on hover</em></h2>
+<h3 id="highlight-features-on-mouseover">Highlight features on mouseover</h3>
+<h2 id="-layer-search-"><em>Layer search</em></h2>
+<h3 id="add-option-to-search-for-values-in-layer-field-values">Add option to search for values in layer field values</h3>
+<h2 id="-match-project-crs-"><em>Match project CRS</em></h2>
+<h3 id="create-webmap-in-same-projection-as-qgis-project-otherwise-the-webmap-is-projected-in-epsg-3857">Create webmap in same projection as QGIS project, otherwise the webmap is projected in EPSG:3857</h3>
+<h2 id="-show-popups-on-hover-"><em>Show popups on hover</em></h2>
+<h3 id="show-popups-when-mouse-hovers-over-features">Show popups when mouse hovers over features</h3>
+<h2 id="-template-"><em>Template</em></h2>
+<h3 id="select-html-template-for-webmap-add-your-own-templates-to-the-qgis2web-templates-directory-in-your-qgis2-folder">Select HTML template for webmap - add your own templates to the /qgis2web/templates directory in your .qgis2 folder</h3>
+</div>
+<div><p><img src="/imgs/directory.png" alt=""></p>
+</div>
+<div><p>Formatting HTML Popups</p>
+</div>
+<div><p>Few things to remember</p>
+<ul>
+<li>Convert to SQLlite</li>
+<li>Concatinate fields with wrapping HTML</li>
+<li>&quot;html_exp&quot; </li>
+</ul>
+</div>
+<div><pre><code> concat(
+ &#39;&lt;h3&gt;&#39;, &quot;location&quot;, &#39;&lt;/h3&gt;
+ &lt;table&gt;&#39;,
+ &#39;&lt;tr&gt;&lt;td&gt;Type: &lt;b&gt;&#39;, &quot;event_type&quot; ,&#39;&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;
+ &lt;td&gt;Actor: &lt;b&gt;&#39;,&quot;actor1&quot;,&#39;&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td&gt;Fatalities: &lt;b&gt;&#39;,&quot;fatalities&quot;, &#39;&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td&gt;Source: &lt;b&gt;&#39;,&quot;source&quot;,&#39;&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;/table&gt;&#39;
+ )
 </code></pre></div>
