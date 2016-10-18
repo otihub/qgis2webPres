@@ -196,7 +196,7 @@ window.onload = function() {
 <ul>
 <li>Convert to SQLlite</li>
 <li>Concatinate fields with wrapping HTML</li>
-<li>&quot;html_exp&quot; </li>
+<li>&quot;html_exp&quot;</li>
 </ul>
 </div>
 <div><pre><code> concat(
@@ -209,6 +209,46 @@ window.onload = function() {
  &lt;/table&gt;&#39;
  )
 </code></pre></div>
-<div>
-  Now that I've made a map how do I update it?
+<div><p>Now that I&#39;ve made a map how do I update it?</p>
+</div>
+<div><p style="background-image: url(imgs/matrixCode.gif);"></p>
+
+<h1 id="with-a-few-lines-of-code-">With a few lines of <code>code</code>!</h1>
+</div>
+<div><h2 id="steps">Steps</h2>
+<ol>
+<li>Convert to <code>geojson</code></li>
+<li>Add padding to the <code>geojson</code></li>
+<li>Update file name (if necessary) in the map&#39;s <code>index.html</code></li>
+</ol>
+</div>
+<div><ol>
+<li>Click the <em>Add Delimited Text Layer Option</em></li>
+<li>Browse to the file called <code>ACLED-2016Sept.csv</code></li>
+<li>Insure that long and lat are set correctly in the <em>X</em> and <em>Y</em> field</li>
+<li>Click <em>OK</em></li>
+<li>Verify that the data has been added correctly</li>
+</ol>
+</div>
+<div><ol>
+<li>Right click on the file in the Layers Panel</li>
+<li>Save As and Select the <code>geojson</code> Format</li>
+<li>Browse to your map&#39;s data folder and save the file</li>
+</ol>
+</div>
+<div><h2 id="json-padding">JSON Padding</h2>
+<p>  <img src="/imgs/jsonPadding.png" alt=""></p>
+<ol>
+<li>Open this file in Notepad++</li>
+<li>At the beginning of your file add the following line of code  <code>var acled201609 =</code></li>
+<li>Save your file as a <code>.js</code> instead of a <code>GeoJSON</code></li>
+</ol>
+</div>
+<div><h2 id="find-your-index-html-file">Find your <code>index.html</code> file</h2>
+<ol>
+<li>Open it in Notepad ++</li>
+<li>Find the line that has this <code>&lt;script src=&quot;data/json_ACLED2016Jan0.js&quot;&gt;&lt;/script&gt;</code></li>
+<li>Do a fined and replace for the old file name: <code>json_ACLED2016Jan0</code> with your new file <code>acled201609.js</code></li>
+<li>Save and refresh your map in your browser</li>
+</ol>
 </div>

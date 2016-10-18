@@ -28,7 +28,7 @@
     <body>
         <div id="map">
         </div>
-        <script src="data/json_ACLEDJanacledjanPoint0.js"></script>
+        <script src="data/acled201609.js"></script>
         <script>
         L.ImageOverlay.include({
             getBounds: function () {
@@ -59,12 +59,12 @@
             ];
           });
         }
-        function pop_ACLEDJanacledjanPoint0(feature, layer) {
+        function pop_acled201609(feature, layer) {
             var popupContent = feature.properties.html_exp;
             layer.bindPopup(popupContent);
         }
 
-        function doStyleACLEDJanacledjanPoint0(feature) {
+        function doStyleacled201609(feature) {
 			switch (feature.properties['event_type']) {
                 case 'Battle-Government regains territory':
                     return {
@@ -167,17 +167,17 @@
                 break;
             }
         }
-        map.createPane('pane_ACLEDJanacledjanPoint0');
-        map.getPane('pane_ACLEDJanacledjanPoint0').style.zIndex = 601;
-        var json_ACLEDJanacledjanPoint0JSON = new L.geoJson(json_ACLEDJanacledjanPoint0, {
-            pane: 'pane_ACLEDJanacledjanPoint0',
-            onEachFeature: pop_ACLEDJanacledjanPoint0,
+        map.createPane('pane_acled201609');
+        map.getPane('pane_acled201609').style.zIndex = 601;
+        var acled201609JSON = new L.geoJson(acled201609, {
+            pane: 'pane_acled201609',
+            onEachFeature: pop_acled201609,
             pointToLayer: function (feature, latlng) {
-                return L.circleMarker(latlng, doStyleACLEDJanacledjanPoint0(feature))
+                return L.circleMarker(latlng, doStyleacled201609(feature))
             }
         });
-        bounds_group.addLayer(json_ACLEDJanacledjanPoint0JSON);
-        feature_group.addLayer(json_ACLEDJanacledjanPoint0JSON);
+        bounds_group.addLayer(acled201609JSON);
+        feature_group.addLayer(acled201609JSON);
         raster_group.addTo(map);
         feature_group.addTo(map);
         setBounds();

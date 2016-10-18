@@ -103,7 +103,6 @@ Few things to remember
 + Concatinate fields with wrapping HTML
 + "html_exp"
 ---
-
 ```
  concat(
  '<h3>', "location", '</h3>
@@ -116,3 +115,37 @@ Few things to remember
  )
 ```
 ---
+Now that I've made a map how do I update it?
+---
+<p style="background-image: url(imgs/matrixCode.gif);"></p>
+
+# With a few lines of `code`!
+
+---
+## Steps
+  1. Convert to `geojson`
+  1. Add padding to the `geojson`
+  1. Update file name (if necessary) in the map's `index.html`
+---
+  1. Click the *Add Delimited Text Layer Option*
+  1. Browse to the file called `ACLED-2016Sept.csv`
+  1. Insure that long and lat are set correctly in the *X* and *Y* field
+  1. Click *OK*
+  1. Verify that the data has been added correctly
+---
+  1. Right click on the file in the Layers Panel
+  1. Save As and Select the `geojson` Format
+  1. Browse to your map's data folder and save the file
+---
+## JSON Padding
+  ![](/imgs/jsonPadding.png)
+  1. Open this file in Notepad++
+  1. At the beginning of your file add the following line of code  `var acled201609 =`
+  1. Save your file as a `.js` instead of a `GeoJSON`
+---
+
+## Find your `index.html` file
+1. Open it in Notepad ++
+1. Find the line that has this `<script src="data/json_ACLED2016Jan0.js"></script>`
+1. Do a fined and replace for the old file name: `json_ACLED2016Jan0` with your new file `acled201609.js`
+1. Save and refresh your map in your browser
