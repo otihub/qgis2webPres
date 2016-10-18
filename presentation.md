@@ -115,7 +115,7 @@ Few things to remember
  )
 ```
 ---
-Now that I've made a map how do I update it?
+Now that I've made a map how do I update it with a new dataset?
 ---
 <p style="background-image: url(imgs/matrixCode.gif);"></p>
 
@@ -144,8 +144,8 @@ Now that I've made a map how do I update it?
   1. Save your file as a `.js` instead of a `GeoJSON`
 ---
 
-## Find your `index.html` file
+## Editing the `index.html` file
 1. Open it in Notepad ++
 1. Find the line that has this `<script src="data/json_ACLED2016Jan0.js"></script>`
 1. Do a fined and replace for the old file name: `json_ACLED2016Jan0` with your new file `acled201609.js`
-1. Save and refresh your map in your browser
+1. Save the `index.html` and refresh the map in the browser
